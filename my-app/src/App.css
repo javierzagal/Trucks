@@ -1,4 +1,35 @@
 .leaflet-container{
-  width: 500vw;
+  width: 50vw;
   height: 40vw;
+}
+
+.card-container {
+ 
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+  background-color: rgb(141, 125, 53);
+  max-height: 60%;
+
+  margin: 0;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 0%;
+  padding: 0;
+  overflow-x: scroll;
+
+}
+
+
+.card {
+
+  background-color: #faefc1;
+  flex: 0 0 auto;
+  margin: 1%;
+  padding: 0.5%;
+  height: 90%;
+  border-radius: 10px;
+  border: 3px solid #6e440c;
+  text-align: left;
+  font-size: 50%;
 }
