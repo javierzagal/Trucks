@@ -1,35 +1,77 @@
 .leaflet-container{
   width: 50vw;
-  height: 40vw;
+  height: 100vh;
+  max-height: 100%;
 }
-
+.infobox{
+  background-color: rgb(190, 205, 50);
+  height: 100vh;
+}
+.p1{
+  font-family: "Lucida Console", "Courier New", monospace;
+}
 .card-container {
- 
-  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
   flex-flow: row nowrap;
-  overflow-x: scroll;
+  overflow-y: scroll;
   background-color: rgb(141, 125, 53);
-  max-height: 60%;
 
+  max-height: 80%;
+  
   margin: 0;
   margin-left: 1%;
   margin-right: 1%;
   margin-bottom: 0%;
   padding: 0;
-  overflow-x: scroll;
 
 }
+.overall{
+  display: flex;
+  max-height: 100%;
+}
+.chat-box{
+  background-color: rgb(174, 255, 179);
+  text-align: center;
+  max-height: 100%;
+  height: 100vh;
+}
+.chat-container{
+  background-color: rgb(205, 245, 208);
+  border-radius: 20px;
+  text-align: center;
+  overflow-y: scroll;
+  max-height:  100%;
+}
+.map-chat{
+  display: flex;
+}
+.msj-container {
+  background-color: rgb(141, 125, 53);
+  max-height: 60%;
 
+  margin: 0;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 0%;
+  padding: 0;
+  border-radius: 20px;
+  text-align: center;
 
+}
+.card-title {
+  text-align: center;
+  background-color: #fde78d;
+  border-radius: 10px;
+}
 .card {
-
+  text-align: left;
   background-color: #faefc1;
   flex: 0 0 auto;
-  margin: 1%;
+  margin: 5%;
   padding: 0.5%;
   height: 90%;
-  border-radius: 10px;
-  border: 3px solid #6e440c;
-  text-align: left;
+  border-radius: 30px;
+  border: 10px solid #fde78d;
   font-size: 50%;
 }

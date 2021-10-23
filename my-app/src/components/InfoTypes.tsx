@@ -5,6 +5,17 @@ interface people {
   age: number;
 }
   
+interface chatMessage {
+  date: string;
+  message: string;
+  name: string;
+}
+
+interface failureInfo{
+  code: string;
+  source: string;
+}
+
 interface TruckInfo {
   code: string;
   origin: number[];
@@ -20,6 +31,11 @@ interface TruckInfo {
 interface TruckPos {
   code: string;
   position: number[];
+  iconInt: number;
 }
 
-export type { TruckInfo, TruckPos}
+export function getRandomInt(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+export type { TruckInfo, TruckPos, chatMessage, failureInfo}
