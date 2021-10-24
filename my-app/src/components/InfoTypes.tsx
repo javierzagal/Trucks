@@ -28,6 +28,11 @@ interface TruckInfo {
   staff: people[];
 }
 
+interface TruckStatus {
+  code: string;
+  source: string;
+}
+
 interface TruckPos {
   code: string;
   position: number[];
@@ -38,4 +43,4 @@ export function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-export type { TruckInfo, TruckPos, chatMessage, failureInfo}
+export type { TruckInfo, TruckPos, chatMessage, failureInfo, TruckStatus}

@@ -2,6 +2,7 @@
   width: 50vw;
   height: 100vh;
   max-height: 100%;
+  
 }
 .infobox{
   background-color: rgb(190, 205, 50);
@@ -9,13 +10,17 @@
 }
 .p1{
   font-family: "Lucida Console", "Courier New", monospace;
+  text-align: center;
+  font-size: 150% ;
+  font-weight: bolder;
 }
 .card-container {
   font-family: Arial, Helvetica, sans-serif;
   display: block;
   flex-flow: row nowrap;
   overflow-y: scroll;
-  background-color: rgb(141, 125, 53);
+  background-color: rgb(209, 185, 78);
+  border-radius: 20px;
 
   max-height: 80%;
   
@@ -33,30 +38,59 @@
 .chat-box{
   background-color: rgb(174, 255, 179);
   text-align: center;
+  
   max-height: 100%;
   height: 100vh;
+}
+.user-name{
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: rgb(14, 131, 22);
+  font-weight: bold;
+  font-size: 120%;
 }
 .chat-container{
   background-color: rgb(205, 245, 208);
   border-radius: 20px;
   text-align: center;
-  overflow-y: scroll;
-  max-height:  100%;
+  overflow-y: auto;
+  max-height:  65%;
+  
+}
+input[type=text]{
+  width: 60%;
+  border: 5px solid rgb(205, 245, 208);
+  border-radius: 10px;
+  color: green;
+  background-color: rgb(251, 255, 190);
 }
 .map-chat{
   display: flex;
 }
+.msj-text{
+  margin-left: 10%;
+  margin-bottom: 10%;
+}
+.truckinfo-text{
+  margin-left: 15%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
 .msj-container {
-  background-color: rgb(141, 125, 53);
+  background-color: rgb(251, 255, 190);
   max-height: 60%;
+  border: 5px solid #fde78d;
 
   margin: 0;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 0%;
   padding: 0;
-  border-radius: 20px;
-  text-align: center;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 50%;
+  font-family: Arial, Helvetica, sans-serif;
+
 
 }
 .card-title {
