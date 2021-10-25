@@ -34,6 +34,7 @@
 .overall{
   display: flex;
   max-height: 100%;
+
 }
 .chat-box{
   background-color: rgb(174, 255, 179);

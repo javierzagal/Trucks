@@ -12,6 +12,7 @@ function App() {
   const [trucks, setTrucks] = useState<TruckPos[]>([]);
   const [trucksInfo, setTrucksInfo] = useState<TruckInfo[]>([]);
   const [trucksStatus, setTrucksStatus] = useState<TruckStatus[]>([]);
+  const [truckToFix, setTruckToFix] = useState("")
 
 
 	// CHAT
@@ -105,9 +106,10 @@ function App() {
   const handleChangeUsername = () => {
     setUsername(username);
   }
+  
 
-  const handleFixTruck = (codigo:string) =>{
-    socket.emit('FIX', {code: codigo});
+  const handleFixTruck = () =>{
+    socket.emit('FIX', {code: truckToFix});
   }
 
   return (
@@ -209,7 +211,14 @@ function App() {
             <div><h3> Estatus: {
               trucksStatus.find(found => found.code === info.code)?.source 
               }</h3>
-              <button onClick={handleFixTruck(info.code)}> FIX </button>
+              <form
+                onSubmit={e => {
+                  setTruckToFix(info.code)
+                  handleFixTruck()
+                }}
+              >
+              <button type="submit"> FIX </button>
+              </form>
             </div>
             <h2> Operadores</h2>
             {info.staff.map((persona)=>
