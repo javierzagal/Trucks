@@ -19,7 +19,7 @@ function App() {
 	const [ chat, setChat ] = useState<chatMessage[]>([])
   const [mensaje, setMensaje] = useState("")
 
-  const [username, setUsername] = useState("defaultUser")
+  const [username, setUsername] = useState("defaultUsername")
 
   useEffect(() => {
     socket.emit('TRUCKS');
@@ -47,7 +47,13 @@ function App() {
 
     socket.on('CHAT', (mensaje: {date:string, message: string, name: string})=>{
       //console.log(mensaje);
-      setChat([...chat, mensaje])
+      var realDate = new Date(mensaje.date);
+      const msj = {
+        date: realDate.toString(),
+        message: mensaje.message,
+        name: mensaje.name
+      }
+      setChat([...chat, msj])
     })
     
     socket.on('FIX', (fixInfo: {code: string}) => {
@@ -109,16 +115,17 @@ function App() {
   
 
   const handleFixTruck = () =>{
-    socket.emit('FIX', {code: truckToFix});
+    const fix = {
+      code: truckToFix
+    }
+    socket.emit('FIX', fix);
+    setTruckToFix("");
   }
 
   return (
 
     <>
     <div className = "overall">
-    
-    <div className="map-chat">
-
       <div className="map">
       <MapContainer center={[-22, -68.5]} zoom={10} scrollWheelZoom={true}>
         <TileLayer
@@ -147,6 +154,7 @@ function App() {
       <div className= "chat-box">
         <p className="p1"> Chat </p>
         <br/>
+        
         <p> Nombre de usuario: </p>
         <form onSubmit={e => {
           e.preventDefault()
@@ -160,7 +168,7 @@ function App() {
           />
           <button type= "submit"> Cambiar </button>
         </form>
-
+        
         <div className= "chat-container">
           {chat.map((mensaje)=>
           <div className="msj-container"> 
@@ -171,6 +179,7 @@ function App() {
               <br></br>
             </div>
           </div>
+          
           )}
           
         </div>
@@ -189,46 +198,45 @@ function App() {
           <button type= "submit"> ENVIAR </button>
         </form>
       </div>
-    </div> 
-    
 
+      <div className="infobox">
+        <p className="p1"> Información de los camiones</p>
+        <br/>
+        <div className="card-container">
+        {trucksInfo.map((info)=>
+          
+          <div className="card">
+            <div className="card-title"><h1> Codigo: {info.code}</h1></div>
 
-    <div className="infobox">
-      <p className="p1"> Información de los camiones</p>
-      <br/>
-      <div className="card-container">
-      {trucksInfo.map((info)=>
-        
-        <div className="card">
-          <div className="card-title"><h1> Codigo: {info.code}</h1></div>
-
-          <div className='truckinfo-text'>
-            <div><h3> Truck: {info.truck}</h3></div>
-            <div><h3> Engine: {info.engine}</h3></div>
-            <div><h3> Capacidad: {info.capacity}</h3></div>
-            <div><h3> Origen: {info.origin}</h3></div>
-            <div><h2>Destino: </h2><h3> {info.destination}</h3></div>
-            <div><h3> Estatus: {
-              trucksStatus.find(found => found.code === info.code)?.source 
-              }</h3>
-              <form
-                onSubmit={e => {
-                  setTruckToFix(info.code)
-                  handleFixTruck()
-                }}
-              >
-              <button type="submit"> FIX </button>
-              </form>
+            <div className='truckinfo-text'>
+              <div><h3> Truck: {info.truck}</h3></div>
+              <div><h3> Engine: {info.engine}</h3></div>
+              <div><h3> Capacidad: {info.capacity}</h3></div>
+              <div><h3> Origen: {info.origin}</h3></div>
+              <div><h2>Destino: </h2><h3> {info.destination}</h3></div>
+              <div><h3> Estatus: {
+                trucksStatus.find(found => found.code === info.code)?.source 
+                }</h3>
+                <form
+                  onSubmit={e => {
+                    e.preventDefault()
+                    handleFixTruck()
+                  }}
+                >
+                <button 
+                  onClick={e => setTruckToFix(info.code)}
+                  type="submit"> FIX </button>
+                </form>
+              </div>
+              <h2> Operadores</h2>
+              {info.staff.map((persona)=>
+              <div><h3> {persona.name}, {persona.age} años</h3></div>
+              )}
             </div>
-            <h2> Operadores</h2>
-            {info.staff.map((persona)=>
-            <div><h3> {persona.name}, {persona.age} años</h3></div>
-            )}
           </div>
+        )}
         </div>
-      )}
       </div>
-    </div>
 
     </div>
   </>
